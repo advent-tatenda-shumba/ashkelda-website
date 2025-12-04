@@ -1,13 +1,221 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* =========================================
+   ASHKELDA GUEST HOUSE - COMPLETE STYLES
+   ========================================= */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  /* Brand Colors */
+  --primary: #2C5F7F;
+  --primary-dark: #1A3A52;
+  --accent: #D4AF37;       /* The Gold Color */
+  --accent-light: #F4E4C1;
+  --background: #FAF9F7;
+  --white: #FFFFFF;
+  --text-dark: #2C2C2C;
+  --text-light: #6B6B6B;
+  --border: #E5E5E5;
+  
+  /* Typography & Spacing */
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+  --section-padding: 80px 20px;
+  --container-max: 1200px;
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 20px rgba(0,0,0,0.12);
+  --shadow-lg: 0 8px 30px rgba(0,0,0,0.15);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Dark Mode Variables */
+body.dark-mode {
+  --background: #1A1A1A;
+  --white: #2C2C2C;
+  --text-dark: #F5F5F5;
+  --text-light: #CCCCCC;
+  --border: #404040;
+  --primary: #4A8FB8;
 }
+
+body { font-family: var(--font-body); background-color: var(--background); color: var(--text-dark); line-height: 1.6; transition: background-color 0.3s ease, color 0.3s ease; }
+h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); font-weight: 600; line-height: 1.3; color: var(--text-dark); }
+h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 1rem; }
+h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem; }
+h3 { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 0.75rem; }
+p { font-size: clamp(1rem, 2vw, 1.125rem); color: var(--text-light); margin-bottom: 1rem; }
+a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+img { max-width: 100%; height: auto; display: block; }
+
+/* Layout Utilities */
+.container { max-width: var(--container-max); margin: 0 auto; padding: 0 20px; }
+.section { padding: var(--section-padding); }
+.section-title { text-align: center; margin-bottom: 3rem; position: relative; }
+.section-title::after { content: ''; display: block; width: 80px; height: 3px; background: var(--accent); margin: 1rem auto 0; border-radius: 2px; }
+
+/* Grid System */
+.grid { display: grid; gap: 2rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.grid-4 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+
+/* Buttons */
+.btn { display: inline-block; padding: 14px 32px; font-family: var(--font-body); font-size: 1rem; font-weight: 500; border-radius: 8px; cursor: pointer; border: none; transition: all 0.3s ease; text-align: center; }
+.btn-primary { background: var(--primary); color: #FFFFFF; box-shadow: var(--shadow-sm); }
+.btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.btn-accent { background: var(--accent); color: var(--text-dark); box-shadow: var(--shadow-sm); }
+.btn-accent:hover { background: #C19B2E; transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.btn-outline { background: transparent; color: var(--primary); border: 2px solid var(--primary); }
+.btn-outline:hover { background: var(--primary); color: #FFFFFF; }
+
+/* Cards */
+.card { background: var(--white); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-sm); transition: all 0.3s ease; }
+.card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+
+/* --- ROOM CARD & PRICE TAGS (This restores your gold tags!) --- */
+.room-card { display: flex; flex-direction: column; height: 100%; position: relative; transition: transform 0.3s ease; }
+.room-image-wrapper { position: relative; height: 250px; overflow: hidden; }
+.room-image-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+.room-card:hover .room-image-wrapper img { transform: scale(1.1); }
+
+/* The Gold Price Tag Style */
+.room-price-tag {
+  position: absolute; bottom: 0; right: 0;
+  background: var(--accent);
+  color: var(--text-dark);
+  padding: 8px 16px;
+  font-weight: 700;
+  font-size: 1.2rem;
+  font-family: var(--font-heading);
+  border-top-left-radius: 12px;
+  box-shadow: -2px -2px 10px rgba(0,0,0,0.1);
+}
+
+.room-badge {
+  position: absolute; top: 15px; left: 15px;
+  background: var(--primary-dark); color: #fff;
+  padding: 4px 12px; border-radius: 20px;
+  font-size: 0.8rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 1px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.room-features svg { transition: color 0.3s ease; }
+.room-card:hover .room-features svg { color: var(--accent); }
+
+/* Navbar */
+.navbar { position: fixed; top: 0; width: 100%; background: var(--white); box-shadow: var(--shadow-sm); z-index: 1000; transition: all 0.3s ease; }
+.navbar.scrolled { padding: 10px 0; box-shadow: var(--shadow-md); }
+.nav-container { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; max-width: var(--container-max); margin: 0 auto; }
+.nav-logo { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+.nav-menu { display: flex; list-style: none; gap: 2rem; align-items: center; }
+.nav-link { color: var(--text-dark); font-weight: 500; position: relative; padding: 5px 0; }
+.nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--accent); transition: width 0.3s ease; }
+.nav-link:hover::after, .nav-link.active::after { width: 100%; }
+.nav-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: var(--text-dark); }
+
+/* --- HERO & B-ROLL STYLES (Restores video effect) --- */
+.hero { position: relative; height: 100vh; min-height: 600px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-top: 70px; }
+.hero-bg-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: 0; }
+.hero-bg-image {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  object-fit: cover;
+  filter: blur(3px) brightness(0.8); 
+  transform: scale(1.05);
+}
+.hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: transparent; }
+.hero-content { position: relative; z-index: 2; text-align: center; color: #FFFFFF; padding: 20px; }
+/* Force white text on Hero */
+.hero-content h1, .hero-content p { color: #FFFFFF !important; text-shadow: 2px 2px 10px rgba(0,0,0,0.7); }
+
+/* --- GALLERY GRID & LIGHTBOX (Restores Gallery page) --- */
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; grid-auto-flow: dense; }
+.gallery-item { position: relative; border-radius: 12px; overflow: hidden; cursor: pointer; box-shadow: var(--shadow-sm); aspect-ratio: 4/3; }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+.gallery-item:hover img { transform: scale(1.1); }
+.gallery-overlay {
+  position: absolute; bottom: 0; left: 0; width: 100%; padding: 1rem;
+  background: linear-gradient(transparent, rgba(0,0,0,0.8));
+  color: white; opacity: 0; transition: opacity 0.3s ease;
+  display: flex; align-items: center; gap: 10px;
+}
+.gallery-item:hover .gallery-overlay { opacity: 1; }
+
+.lightbox {
+  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.9); z-index: 3000;
+  display: flex; align-items: center; justify-content: center; padding: 2rem;
+}
+.lightbox img { max-width: 90%; max-height: 85vh; border-radius: 8px; box-shadow: var(--shadow-lg); }
+.lightbox-close {
+  position: absolute; top: 30px; right: 30px; background: white; border: none;
+  border-radius: 50%; width: 40px; height: 40px; font-size: 1.2rem; cursor: pointer; color: black;
+}
+.lightbox-caption { position: absolute; bottom: 30px; color: white; font-family: var(--font-heading); font-size: 1.5rem; }
+
+/* --- ROOM POPUP MODAL (Restores popup styles) --- */
+.modal-backdrop {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.85); z-index: 2000;
+  display: flex; justify-content: center; align-items: center; padding: 20px;
+}
+.modal-content {
+  background: var(--white); width: 100%; max-width: 900px;
+  border-radius: 12px; overflow: hidden; position: relative;
+  display: grid; grid-template-columns: 1.5fr 1fr;
+  box-shadow: var(--shadow-lg); max-height: 90vh;
+}
+.modal-image-container { background: #f0f0f0; height: 100%; min-height: 400px; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.modal-image-container img { width: 100%; height: 100%; object-fit: cover; }
+.modal-nav {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.8); border: none; padding: 10px;
+  cursor: pointer; border-radius: 50%; font-size: 1.2rem; color: var(--primary);
+  z-index: 10; transition: 0.3s;
+}
+.modal-nav:hover { background: var(--white); transform: translateY(-50%) scale(1.1); }
+.modal-nav.prev { left: 15px; }
+.modal-nav.next { right: 15px; }
+.modal-info { padding: 2rem; display: flex; flex-direction: column; overflow-y: auto; }
+.modal-info h3 { font-family: var(--font-heading); font-size: 2rem; margin-bottom: 0.5rem; color: var(--primary); }
+.modal-thumbnails { display: flex; gap: 10px; margin-top: auto; overflow-x: auto; padding-top: 1rem; }
+.modal-thumbnails img { width: 60px; height: 60px; object-fit: cover; border-radius: 6px; cursor: pointer; opacity: 0.6; transition: 0.3s; border: 2px solid transparent; }
+.modal-thumbnails img.active { opacity: 1; border-color: var(--accent); }
+.modal-close {
+  position: absolute; top: 15px; right: 15px; background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%; width: 35px; height: 35px; cursor: pointer;
+  z-index: 20; display: flex; align-items: center; justify-content: center;
+  color: var(--text-dark); box-shadow: var(--shadow-sm);
+}
+
+/* Footer & Floating Elements */
+.footer { background: var(--primary-dark); color: #FFFFFF; padding: 3rem 20px 1.5rem; }
+.footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; max-width: var(--container-max); margin: 0 auto 2rem; }
+.footer-section h3 { color: #FFFFFF; margin-bottom: 1rem; font-size: 1.25rem; }
+.footer-section p, .footer-section a { color: rgba(255,255,255,0.8); margin-bottom: 0.5rem; display: block; }
+.footer-section a:hover { color: var(--accent); }
+.social-links { display: flex; gap: 1rem; margin-top: 1rem; }
+.social-icon { font-size: 1.5rem; color: rgba(255,255,255,0.8); transition: all 0.3s ease; }
+.social-icon:hover { color: var(--accent); transform: translateY(-3px); }
+.footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.6); font-size: 0.9rem; }
+.whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; box-shadow: var(--shadow-lg); cursor: pointer; z-index: 999; transition: all 0.3s ease; animation: pulse 2s infinite; }
+.whatsapp-float:hover { transform: scale(1.1); background: #20BA5A; }
+@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+.dark-mode-toggle { background: var(--primary); color: #FFFFFF; border: none; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 1.2rem; transition: all 0.3s ease; }
+.dark-mode-toggle:hover { background: var(--primary-dark); transform: rotate(180deg); }
+
+/* Mobile */
+@media (max-width: 768px) {
+  .nav-menu { position: fixed; left: -100%; top: 70px; flex-direction: column; background: var(--white); width: 100%; text-align: center; transition: 0.3s; box-shadow: var(--shadow-md); padding: 2rem 0; gap: 1.5rem; }
+  .nav-menu.active { left: 0; }
+  .nav-toggle { display: block; }
+  .hero { margin-top: 70px; height: 70vh; }
+  .section { padding: 60px 20px; }
+  .grid { gap: 1.5rem; }
+  .modal-content { grid-template-columns: 1fr; height: auto; max-height: 85vh; overflow-y: auto; }
+  .modal-image-container { height: 250px; min-height: auto; }
+}
+@media (max-width: 480px) { h1 { font-size: 2rem; } h2 { font-size: 1.75rem; } .btn { padding: 12px 24px; font-size: 0.9rem; } }
+html { scroll-behavior: smooth; }
+::selection { background: var(--accent); color: var(--text-dark); }
