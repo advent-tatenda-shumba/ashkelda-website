@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FaHeart, FaHome, FaStar, FaMapMarkerAlt } from 'react-icons/fa';
+import OptimizedImage from '../components/OptimizedImage';
 
 function About() {
   const values = [
@@ -59,7 +60,7 @@ function About() {
               viewport={{ once: true }}
             >
               {/* PLACEHOLDER: Replace with actual lodge image */}
-              <img 
+              <OptimizedImage  
                 src="/images/about.jpg" 
                 alt="Ashkelda Guest House"
                 style={{ 

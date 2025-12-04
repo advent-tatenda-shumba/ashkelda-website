@@ -1,8 +1,10 @@
+// src/pages/Home.js - UPDATED VERSION
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaWifi, FaTv, FaSnowflake, FaMugHot, FaBed, FaStar } from 'react-icons/fa';
-import HeroBackground from '../components/HeroBackground'; // Import the slideshow!
+import HeroBackground from '../components/HeroBackground';
+import OptimizedImage from '../components/OptimizedImage'; // IMPORT THE NEW COMPONENT
 
 function Home() {
   const fadeIn = {
@@ -10,7 +12,6 @@ function Home() {
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
   };
 
-  // Using your REAL images for the preview
   const rooms = [
     {
       title: 'Standard Room',
@@ -67,14 +68,14 @@ function Home() {
 
   return (
     <div className="home">
-      {/* Hero Section with B-Roll Effect */}
+      {/* Hero Section */}
       <motion.section 
         className="hero"
         initial="hidden"
         animate="visible"
         variants={fadeIn}
       >
-        <HeroBackground /> {/* This replaces the static <img> tag */}
+        <HeroBackground />
         
         <div className="hero-content">
           <h1>Welcome to Ashkelda Guest House</h1>
@@ -110,7 +111,7 @@ function Home() {
         </div>
       </motion.section>
 
-      {/* Rooms Preview */}
+      {/* Rooms Preview - WITH OPTIMIZED IMAGES */}
       <section className="section" style={{ background: 'var(--background)' }}>
         <div className="container">
           <h2 className="section-title">Our Rooms</h2>
@@ -124,13 +125,14 @@ function Home() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
+                {/* BEFORE: <img src={room.image} alt={room.title} /> */}
+                {/* AFTER: Use OptimizedImage */}
                 <div style={{position: 'relative', height: '200px'}}>
-                  <img 
+                  <OptimizedImage 
                     src={room.image} 
                     alt={room.title}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    style={{ width: '100%', height: '100%' }}
                   />
-                  {/* Price Tag for Home Page Cards */}
                   <div className="room-price-tag" style={{fontSize: '1rem', padding: '5px 12px'}}>
                     {room.price}
                   </div>

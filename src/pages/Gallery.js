@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaTimes, FaSearchPlus } from 'react-icons/fa';
+import OptimizedImage from '../components/OptimizedImage';
 
 // Beautifully curated mix of your best uploads
 const galleryImages = [
@@ -78,7 +79,7 @@ function Gallery() {
                   className="gallery-item"
                   onClick={() => setSelectedImg(img)}
                 >
-                  <img src={img.src} alt={img.caption} loading="lazy" />
+                  <OptimizedImage src={img.src} alt={img.caption} />
                   <div className="gallery-overlay">
                     <FaSearchPlus size={24} />
                     <span style={{marginTop: '10px', fontWeight: '500'}}>{img.caption}</span>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaWifi, FaTv, FaSnowflake, FaBed, FaUtensils, FaUserFriends, FaCrown } from 'react-icons/fa';
 import RoomModal from '../components/RoomModal';
+import OptimizedImage from '../components/OptimizedImage';
 
 function Rooms() {
   const [selectedRoom, setSelectedRoom] = useState(null);
@@ -65,7 +66,7 @@ function Rooms() {
               style={room.id === 4 ? {border: '2px solid var(--accent)'} : {}}
             >
               <div className="room-image-wrapper" onClick={() => setSelectedRoom(room)} style={{cursor: 'pointer'}}>
-                <img src={room.cover} alt={room.title} />
+                <OptimizedImage src={room.cover} alt={room.title} />
                 <div className="room-price-tag">{room.price}</div>
                 {room.id === 4 && <div className="room-badge">Premium</div>}
               </div>
