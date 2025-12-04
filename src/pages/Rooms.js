@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaWifi, FaTv, FaSnowflake, FaBed, FaUtensils, FaUserFriends, FaCrown } from 'react-icons/fa';
-import RoomModal from '../components/RoomModal';
+import RoomModal from '../components/TempModal';
 
 function Rooms() {
   const [selectedRoom, setSelectedRoom] = useState(null);
